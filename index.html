@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            background-color: #DBDBDB;
+        }
+        
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: auto min-content;
+            justify-content: center;
+            justify-items: end;
+            align-items: center;
+            gap: 5px 10px;
+        }
+        
+        .pedals {
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        input {
+            margin: 0;
+        }
+        
+        .distortion {
+            width: 220px;
+            height: 425px;
+            border-radius: 10px;
+            background: rgb(131, 58, 180);
+            background: linear-gradient(6deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+        }
+        
+        .reverb {
+            width: 220px;
+            height: 425px;
+            border-radius: 10px;
+            background: rgb(2, 0, 36);
+            background: linear-gradient(3deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+        }
+        
+        .boost {
+            width: 220px;
+            height: 425px;
+            border-radius: 10px;
+            background: rgb(34, 193, 195);
+            background: linear-gradient(159deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+        }
+        
+        .delay {
+            width: 220px;
+            height: 425px;
+            border-radius: 10px;
+            background: rgb(43, 34, 195);
+            background: linear-gradient(159deg, rgba(43, 34, 195, 1) 0%, rgba(171, 77, 173, 1) 37%, rgba(228, 169, 63, 1) 78%, rgba(253, 187, 45, 1) 100%);
+        }
+        
+        .circle {
+            background: gray;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-top: 150px;
+            margin-left: 85px;
+        }
+        
+        .pedal_controls {
+            padding-top: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="visualizer" style="position:fixed;bottom: 0; height: 100vh"></canvas>
+    <div class="grid">
+        <label for="volume">Volume</label>
+        <input type="range" min="0" max="1" value="0.5" step=".01" id="volume">
+        <label for="bass">Bass</label>
+        <input type="range" min="-30" max="30" value="0" id="bass">
+        <label for="mid">Mid</label>
+        <input type="range" min="-30" max="30" value="0" id="mid">
+        <label for="treble">Treble</label>
+        <input type="range" min="-30" max="30" value="0" id="treble">
+    </div>
+
+
+
+    <div class="pedals" id="pedals">
+        <div class="distortion">
+            <div class="pedal_controls">
+                <label for="distortion_filter">Distortion</label>
+                <br>
+                <input type="range" min="0" max="80" value="40" step="10" id="distortion_filter">
+                <div class="circle" id="dist">
+                </div>
+            </div>
+        </div>
+        <div class="reverb">
+            <div class="pedal_controls">
+                <label for="reverb_attack_filter">Reverb attack</label>
+                <br>
+                <input type="range" min="0" max="100" value="50" step="10" id="reverb_attack_filter">
+                <br>
+                <label for="reverb_depth_filter">Reverb depth</label>
+                <br>
+                <input type="range" min="0" max="100" value="50" step="10" id="reverb_depth_filter">
+                <div class="circle" style="margin-top: 110px;" id="reverb">
+                </div>
+            </div>
+        </div>
+
+        <div class="boost">
+            <div class="pedal_controls">
+                <label for="crunch_filter">Boost</label>
+                <br>
+                <input type="range" min="0" max="20" value="10" step="2" id="crunch_filter">
+                <div class="circle" id="boost">
+                </div>
+            </div>
+        </div>
+        <div class="delay">
+            <div class="pedal_controls">
+                <label for="delay_filter">Delay depth</label>
+                <br>
+                <input type="range" min="0" max="0.2" value="0.05" step="0.05" id="delay_filter">
+                <br>
+                <div class="circle" id="delay">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+</body>
+
+</html>
